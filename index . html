@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PropertyTrack - Real Estate</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7f5;
+            color: #193b2c;
+        }
+        header {
+            background: #174d38;
+            color: white;
+            padding: 22px;
+            text-align: center;
+        }
+        nav {
+            background: white;
+            padding: 16px;
+            text-align: center;
+        }
+        nav a {
+            margin: 12px;
+            color: #174d38;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .hero {
+            text-align: center;
+            padding: 65px 20px;
+            background: #dcebe1;
+        }
+        .hero h1 {font-size: 38px;}
+        .search {
+            padding: 15px;
+            width: 65%;
+            max-width: 450px;
+            border: 1px solid #aaa;
+            border-radius: 6px;
+        }
+        button {
+            padding: 15px 22px;
+            background: #174d38;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .properties {
+            padding: 35px 20px;
+            text-align: center;
+        }
+        .card {
+            display: inline-block;
+            background: white;
+            width: 260px;
+            margin: 12px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px #0001;
+            vertical-align: top;
+        }
+        footer {
+            background: #174d38;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>PropertyTrack</h1>
+    <p>Your Trusted Real Estate Platform</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="listings.html">Properties</a>
+    <a href="add-property.html">Add Property</a>
+    <a href="login.html">Login</a>
+    <a href="dashboard.html">Dashboard</a>
+</nav>
+
+<section class="hero">
+    <h1>Find Your Dream Property</h1>
+    <p>Discover houses, apartments and land for sale or rent.</p>
+    <input class="search" id="search" type="text"
+           placeholder="Search properties...">
+    <button onclick="searchProperties()">Search</button>
+</section>
+
+<section class="properties">
+    <h2>Welcome to PropertyTrack</h2>
+    <p>Find the right property at the right price.</p>
+
+    <div class="card">
+        <h3>Modern Houses</h3>
+        <p>Explore beautiful family homes.</p>
+        <a href="listings.html">View properties</a>
+    </div>
+
+    <div class="card">
+        <h3>Apartments</h3>
+        <p>Find comfortable apartments.</p>
+        <a href="listings.html">View apartments</a>
+    </div>
+
+    <div class="card">
+        <h3>Land Properties</h3>
+        <p>Discover land investment opportunities.</p>
+        <a href="listings.html">View land</a>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2026 PropertyTrack. All Rights Reserved.</p>
+</footer>
+
+<script>
+function searchProperties() {
+    const query = document.getElementById("search").value;
+    window.location.href =
+        "listings.html?search=" + encodeURIComponent(query);
+}
+</script>
+
+</body>
+</html>
