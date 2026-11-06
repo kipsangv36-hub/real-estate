@@ -1,74 +1,9 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Listings | PropertyTrack</title><style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#203d68;--blue:#35658e;--light:#f4f6fa;--border:#dfe4eb;--muted:#697586}
-body{font-family:Arial,sans-serif;background:var(--light);color:#273444;font-size:14px}
-a{text-decoration:none;color:inherit}.topbar{background:var(--navy);color:white;display:flex;align-items:center;gap:16px;padding:12px 18px;flex-wrap:wrap}
-.brand{font-weight:bold;font-size:17px;margin-right:auto}.nav{display:flex;gap:8px;flex-wrap:wrap}.nav a{font-size:13px;padding:7px;border-radius:4px}.nav a:hover,.nav a.active{background:#3c5a84}
-.search{width:140px;padding:7px;border:1px solid #d5dce7;border-radius:5px}.user{font-size:12px}
-.container{max-width:1200px;margin:24px auto;padding:0 18px}h1{font-size:22px;margin-bottom:18px}h2{font-size:16px;margin:20px 0 10px}
-.stats{display:grid;grid-template-columns:repeat(6,minmax(100px,1fr));gap:12px;margin-bottom:18px}.stat{background:white;border:1px solid var(--border);border-radius:7px;padding:16px 10px;text-align:center}.stat strong{display:block;font-size:23px;color:var(--navy);margin-bottom:6px}.stat span{font-size:12px;color:var(--muted)}
-.alert{background:#fff3cd;border:1px solid #ead58a;border-radius:5px;padding:10px 12px;margin:12px 0 18px;color:#715b18;font-size:12px}
-.table-wrap{overflow-x:auto;background:white;border:1px solid var(--border);border-radius:5px}table{border-collapse:collapse;width:100%;min-width:680px;font-size:12px}th{background:var(--navy);color:white;text-align:left;padding:10px 9px}td{padding:10px 9px;border-bottom:1px solid #e4e8ee}tr:last-child td{border-bottom:0}
-.badge{display:inline-block;padding:4px 8px;border-radius:12px;font-size:11px;background:#e7f2e8;color:#386842}.offer{background:#fff0cc;color:#785e13}.sold{background:#f8dfe1;color:#8b3338}.withdrawn{background:#e7e7e7;color:#555}.stale{background:#fff0d9;color:#8b5a13}.newbadge{background:#dbeafe;color:#1e40af}
-button,.button{display:inline-block;border:0;border-radius:5px;background:var(--blue);color:white;padding:9px 13px;cursor:pointer;font-size:12px}.secondary{background:#eef2f7;color:#24364b;border:1px solid var(--border)}.del{background:#dc2626;padding:5px 9px;font-size:11px}
-.toolbar{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap}.toolbar input{padding:9px;border:1px solid var(--border);border-radius:5px}
-.panel{background:white;border:1px solid var(--border);border-radius:7px;padding:16px;margin-bottom:18px}.form-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.field{display:flex;flex-direction:column;gap:6px}.field label,.login-container label{font-size:12px;color:var(--muted)}.field input,.field select{padding:10px;border:1px solid var(--border);border-radius:5px;background:#fafbfe;font:inherit}.actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
-.report-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}.bar-row{display:grid;grid-template-columns:100px 1fr 35px;gap:10px;align-items:center;margin:10px 0;font-size:12px}.bar-track{height:14px;background:#edf0f4;border-radius:3px;overflow:hidden}.bar{height:100%;background:#86b66b}.offerbar{background:#e7c45e}.soldbar{background:#df777b}.withdrawnbar{background:#aaa}
-.login-container{width:90%;max-width:380px;margin:10vh auto;background:white;padding:30px 24px;border-radius:8px;box-shadow:0 4px 15px #00000012}.login-container h1{text-align:center;color:#29445f;margin-bottom:8px}.subtitle{text-align:center;color:#7b8490;font-size:13px;margin-bottom:25px}.login-container form{display:flex;flex-direction:column;gap:8px}.login-container input{padding:11px;margin-bottom:10px;border:1px solid var(--border);border-radius:7px;background:#f7f8fc}.login-container button{padding:12px;font-size:15px}
-@media(max-width:900px){.stats{grid-template-columns:repeat(3,1fr)}.form-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.container{padding:0 10px}.stats{grid-template-columns:repeat(2,1fr)}.form-grid,.report-stats{grid-template-columns:1fr}.search{width:100%}}
-</style></head><body><header class="topbar"><a class="brand" href="dashboard.html">PropertyTrack</a><nav class="nav"><a class="" href="dashboard.html">Dashboard</a><a class="active" href="listings.html">Listings</a><a class="" href="activity-log.html">Activity Log</a><a class="" href="reports.html">Reports</a></nav><input class="search" placeholder="Search..."><span class="user">J. Kamau · <a href="login.html">Logout</a></span></header><main class="container"><h1>Property Listings</h1><div class="toolbar"><input id="searchBox" placeholder="Search title, plot no."><a class="button" href="add-property.html">+ Add listing</a></div><p id="count" style="font-size:12px;color:#697586;margin-bottom:10px"></p><div class="table-wrap"><table><thead><tr><th>Ref</th><th>Title</th><th>Location</th><th>Price (KES)</th><th>Status</th><th>Last updated</th><th>Actions</th></tr></thead><tbody id="tableBody"></tbody></table></div><p id="emptyMsg" style="display:none;margin-top:12px;font-size:13px">No properties found. <a href="add-property.html" style="color:#35658e;text-decoration:underline">Add one</a></p></main>
+*{box-sizing:border-box;margin:0;padding:0}:root{--navy:#203d68;--blue:#35658e;--light:#f4f6fa;--border:#dfe4eb;--muted:#697586}body{font-family:Arial,sans-serif;background:var(--light);color:#273444;font-size:14px}a{text-decoration:none;color:inherit}.topbar{background:var(--navy);color:white;display:flex;align-items:center;gap:16px;padding:12px 18px;flex-wrap:wrap}.brand{font-weight:bold;font-size:17px;margin-right:auto}.nav{display:flex;gap:8px;flex-wrap:wrap}.nav a{font-size:13px;padding:7px;border-radius:4px}.nav a:hover,.nav a.active{background:#3c5a84}.search{width:140px;padding:7px;border:1px solid #d5dce7;border-radius:5px}.user{font-size:12px}.container{max-width:1200px;margin:24px auto;padding:0 18px}h1{font-size:22px;margin-bottom:18px}.table-wrap{overflow-x:auto;background:white;border:1px solid var(--border);border-radius:5px}table{border-collapse:collapse;width:100%;min-width:680px;font-size:12px}th{background:var(--navy);color:white;text-align:left;padding:10px 9px}td{padding:10px 9px;border-bottom:1px solid #e4e8ee}.badge{display:inline-block;padding:4px 8px;border-radius:12px;font-size:11px;background:#e7f2e8;color:#386842}.offer{background:#fff0cc;color:#785e13}.sold{background:#f8dfe1;color:#8b3338}.withdrawn{background:#e7e7e7;color:#555}button,.button{display:inline-block;border:0;border-radius:5px;background:var(--blue);color:white;padding:9px 13px;cursor:pointer;font-size:12px}.secondary{background:#eef2f7;color:#24364b;border:1px solid var(--border)}.toolbar{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap}.toolbar input,.toolbar select{padding:9px;border:1px solid var(--border);border-radius:5px}
+</style></head><body><header class="topbar"><a class="brand" href="dashboard.html">PropertyTrack</a><nav class="nav"><a href="dashboard.html">Dashboard</a><a class="active" href="listings.html">Listings</a><a href="activity-log.html">Activity Log</a><a href="reports.html">Reports</a></nav><input class="search" placeholder="Search..."><span class="user"><span id="topUser">Guest</span> · <a href="login.html">Logout</a></span></header><main class="container"><h1>All Listings</h1><div class="toolbar"><p id="count"></p><div style="display:flex;gap:8px"><input id="searchBox" placeholder="Search listings..."><select id="filterStatus"><option value="">All Status</option><option>Available</option><option>Under Offer</option><option>Sold</option><option>Withdrawn</option></select><a class="button" href="add-property.html">+ Add Property</a></div></div><div class="table-wrap"><table><tr><th>Title</th><th>Location</th><th>Price (KES)</th><th>Status</th><th>Plot / Ref</th><th>Action</th></tr><tbody id="listBody"></tbody></table></div></main>
 <script>
-var demo = [
-  {ref:'PL-0101',title:'3BR Maisonette',location:'Kilimani',price:'18,500,000',status:'Available',updated:'2 days ago',isDemo:true},
-  {ref:'PL-0102',title:'2BR Apartment',location:'Westlands',price:'9,800,000',status:'Under Offer',updated:'5 days ago',isDemo:true},
-  {ref:'PL-0103',title:'Commercial Plot',location:'Ruiru',price:'6,200,000',status:'Sold',updated:'Today',isDemo:true},
-  {ref:'PL-0104',title:'4BR Bungalow',location:'Karen',price:'42,000,000',status:'Available',updated:'21 days ago',isDemo:true},
-  {ref:'PL-0105',title:'1BR Studio',location:'Ngong Rd',price:'4,300,000',status:'Withdrawn',updated:'1 day ago',isDemo:true},
-  {ref:'PL-0106',title:'3BR Townhouse',location:'Lavington',price:'27,000,000',status:'Available',updated:'16 days ago',isDemo:true}
-];
-function badgeClass(s){
-  if(s==='Under Offer') return 'badge offer';
-  if(s==='Sold') return 'badge sold';
-  if(s==='Withdrawn') return 'badge withdrawn';
-  return 'badge';
-}
-function formatPrice(p){
-  if(!p) return '-';
-  var n = Number(String(p).replace(/,/g,''));
-  return isNaN(n) ? p : n.toLocaleString('en-KE');
-}
-function render(filter){
-  var saved = JSON.parse(localStorage.getItem('properties') || '[]');
-  var all = [];
-  saved.slice().reverse().forEach(function(p, i){
-    all.push({ref:'NEW-' + (saved.length - i), title:p.title, location:p.location, price:formatPrice(p.price), status:p.status, updated:p.created || 'Just now', isDemo:false, plot:p.plot, index: saved.length - 1 - i});
-  });
-  demo.forEach(function(d){ all.push(d); });
-  if(filter){
-    var f = filter.toLowerCase();
-    all = all.filter(function(r){ return (r.title+' '+r.location+' '+r.plot+' '+r.ref).toLowerCase().includes(f); });
-  }
-  var tbody = document.getElementById('tableBody');
-  tbody.innerHTML = '';
-  document.getElementById('count').textContent = 'Showing ' + all.length + ' listings (' + saved.length + ' newly saved by you)';
-  document.getElementById('emptyMsg').style.display = all.length ? 'none' : 'block';
-  all.forEach(function(r){
-    var tr = document.createElement('tr');
-    var actions = r.isDemo ? 'Edit · Status · Withdraw' : '<button class="del" onclick="deleteProp('+r.index+')">Delete</button>';
-    var extra = r.isDemo ? '' : ' <span class="badge newbadge">NEW</span>';
-    var plotText = r.plot ? ' <span style="color:#697586;font-size:11px">(' + r.plot + ')</span>' : '';
-    tr.innerHTML = '<td>'+r.ref+'</td><td>'+r.title+plotText+'</td><td>'+r.location+'</td><td>'+r.price+'</td><td><span class="'+badgeClass(r.status)+'">'+r.status+'</span>'+extra+'</td><td>'+r.updated+'</td><td>'+actions+'</td>';
-    tbody.appendChild(tr);
-  });
-}
-function deleteProp(idx){
-  if(!confirm('Delete this property?')) return;
-  var list = JSON.parse(localStorage.getItem('properties') || '[]');
-  list.splice(idx,1);
-  localStorage.setItem('properties', JSON.stringify(list));
-  render(document.getElementById('searchBox').value);
-}
-document.getElementById('searchBox').addEventListener('input', function(){ render(this.value); });
-render('');
-</script>
-</body></html>
+document.getElementById('topUser').textContent = localStorage.getItem('loggedInUser') || 'Guest';
+var demo=[{title:'3BR Maisonette',location:'Kilimani',price:'18,500,000',status:'Available',plot:'PL-0101'},{title:'2BR Apartment',location:'Westlands',price:'12,000,000',status:'Under Offer',plot:'PL-0102'},{title:'Commercial Plot',location:'Ruiru',price:'25,000,000',status:'Sold',plot:'PL-0103'},{title:'4BR Bungalow',location:'Karen',price:'42,000,000',status:'Available',plot:'PL-0104'},{title:'1BR Studio',location:'Ngong Rd',price:'6,500,000',status:'Withdrawn',plot:'PL-0105'}];
+function render(){var saved=JSON.parse(localStorage.getItem('properties')||'[]');var all=[];saved.slice().reverse().forEach(function(p){all.push({title:p.title,location:p.location,price:p.price,status:p.status,plot:p.plot,isNew:true})});demo.forEach(function(d){all.push(d)});var q=document.getElementById('searchBox').value.toLowerCase();var f=document.getElementById('filterStatus').value;if(q)all=all.filter(function(x){return (x.title+' '+x.location+' '+x.plot).toLowerCase().includes(q)});if(f)all=all.filter(function(x){return x.status===f});document.getElementById('count').textContent='Showing '+all.length+' listings';var tb=document.getElementById('listBody');tb.innerHTML='';all.forEach(function(p){var cls=p.status==='Available'?'badge':p.status==='Under Offer'?'badge offer':p.status==='Sold'?'badge sold':'badge withdrawn';var tr=document.createElement('tr');tr.innerHTML='<td>'+p.title+(p.isNew?' <span class="badge">NEW</span>':'')+'</td><td>'+p.location+'</td><td>'+p.price+'</td><td><span class="'+cls+'">'+p.status+'</span></td><td>'+p.plot+'</td><td><button class="secondary" onclick="alert(\'Details: '+p.title+' - '+p.location+' - KES '+p.price+'\')">View</button></td>';tb.appendChild(tr)})}
+document.getElementById('searchBox').addEventListener('input',render);document.getElementById('filterStatus').addEventListener('change',render);render();
+</script></body></html>
