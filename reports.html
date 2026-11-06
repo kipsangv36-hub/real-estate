@@ -1,80 +1,10 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Reports Centre | PropertyTrack</title><style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#203d68;--blue:#35658e;--light:#f4f6fa;--border:#dfe4eb;--muted:#697586}
-body{font-family:Arial,sans-serif;background:var(--light);color:#273444;font-size:14px}
-a{text-decoration:none;color:inherit}.topbar{background:var(--navy);color:white;display:flex;align-items:center;gap:16px;padding:12px 18px;flex-wrap:wrap}
-.brand{font-weight:bold;font-size:17px;margin-right:auto}.nav{display:flex;gap:8px;flex-wrap:wrap}.nav a{font-size:13px;padding:7px;border-radius:4px}.nav a:hover,.nav a.active{background:#3c5a84}
-.search{width:140px;padding:7px;border:1px solid #d5dce7;border-radius:5px}.user{font-size:12px}
-.container{max-width:1200px;margin:24px auto;padding:0 18px}h1{font-size:22px;margin-bottom:18px}h2{font-size:16px;margin:20px 0 10px}
-.stats{display:grid;grid-template-columns:repeat(6,minmax(100px,1fr));gap:12px;margin-bottom:18px}.stat{background:white;border:1px solid var(--border);border-radius:7px;padding:16px 10px;text-align:center}.stat strong{display:block;font-size:23px;color:var(--navy);margin-bottom:6px}.stat span{font-size:12px;color:var(--muted)}
-.alert{background:#fff3cd;border:1px solid #ead58a;border-radius:5px;padding:10px 12px;margin:12px 0 18px;color:#715b18;font-size:12px}
-.table-wrap{overflow-x:auto;background:white;border:1px solid var(--border);border-radius:5px}table{border-collapse:collapse;width:100%;min-width:680px;font-size:12px}th{background:var(--navy);color:white;text-align:left;padding:10px 9px}td{padding:10px 9px;border-bottom:1px solid #e4e8ee}tr:last-child td{border-bottom:0}
-.badge{display:inline-block;padding:4px 8px;border-radius:12px;font-size:11px;background:#e7f2e8;color:#386842}.offer{background:#fff0cc;color:#785e13}.sold{background:#f8dfe1;color:#8b3338}.withdrawn{background:#e7e7e7;color:#555}.stale{background:#fff0d9;color:#8b5a13}
-button,.button{display:inline-block;border:0;border-radius:5px;background:var(--blue);color:white;padding:9px 13px;cursor:pointer;font-size:12px}.secondary{background:#eef2f7;color:#24364b;border:1px solid var(--border)}
-.toolbar{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap}.toolbar input{padding:9px;border:1px solid var(--border);border-radius:5px}
-.panel{background:white;border:1px solid var(--border);border-radius:7px;padding:16px;margin-bottom:18px}.form-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.field{display:flex;flex-direction:column;gap:6px}.field label,.login-container label{font-size:12px;color:var(--muted)}.field input,.field select{padding:10px;border:1px solid var(--border);border-radius:5px;background:#fafbfe;font:inherit}.actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
-.report-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}.bar-row{display:grid;grid-template-columns:100px 1fr 35px;gap:10px;align-items:center;margin:10px 0;font-size:12px}.bar-track{height:14px;background:#edf0f4;border-radius:3px;overflow:hidden}.bar{height:100%;background:#86b66b}.offerbar{background:#e7c45e}.soldbar{background:#df777b}.withdrawnbar{background:#aaa}
-.login-container{width:90%;max-width:380px;margin:10vh auto;background:white;padding:30px 24px;border-radius:8px;box-shadow:0 4px 15px #00000012}.login-container h1{text-align:center;color:#29445f;margin-bottom:8px}.subtitle{text-align:center;color:#7b8490;font-size:13px;margin-bottom:25px}.login-container form{display:flex;flex-direction:column;gap:8px}.login-container input{padding:11px;margin-bottom:10px;border:1px solid var(--border);border-radius:7px;background:#f7f8fc}.login-container button{padding:12px;font-size:15px}
-@media(max-width:900px){.stats{grid-template-columns:repeat(3,1fr)}.form-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.container{padding:0 10px}.stats{grid-template-columns:repeat(2,1fr)}.form-grid,.report-stats{grid-template-columns:1fr}.search{width:100%}}
-</style></head><body><header class="topbar"><a class="brand" href="dashboard.html">PropertyTrack</a><nav class="nav"><a class="" href="dashboard.html">Dashboard</a><a class="" href="listings.html">Listings</a><a class="" href="activity-log.html">Activity Log</a><a class="active" href="reports.html">Reports</a></nav><input class="search" placeholder="Search..."><span class="user">J. Kamau · <a href="login.html">Logout</a></span></header><main class="container"><h1>Reports Centre</h1><section class="report-stats"><div class="stat"><strong id="soldMonth">-</strong><span>Sold this month</span></div><div class="stat"><strong id="staleTop">-</strong><span>Stale listings</span></div><div class="stat"><strong id="totalTop">-</strong><span>Total listings</span></div></section><section class="panel"><h2>Listings by status</h2><div class="bar-row"><span>Available</span><div class="bar-track"><div class="bar" id="barAvail" style="width:0%"></div></div><strong id="countAvail">0</strong></div><div class="bar-row"><span>Under offer</span><div class="bar-track"><div class="bar offerbar" id="barOffer" style="width:0%"></div></div><strong id="countOffer">0</strong></div><div class="bar-row"><span>Sold</span><div class="bar-track"><div class="bar soldbar" id="barSold" style="width:0%"></div></div><strong id="countSold">0</strong></div><div class="bar-row"><span>Withdrawn</span><div class="bar-track"><div class="bar withdrawnbar" id="barWith" style="width:0%"></div></div><strong id="countWith">0</strong></div><p id="reportNote" style="font-size:12px;color:#697586;margin-top:10px"></p></section><h2>Listings per agent</h2><div class="table-wrap"><table><tr><th>Agent</th><th>Active</th><th>Sold</th><th>Stale</th></tr><tr><td>J. Kamau</td><td id="agentActive">-</td><td id="agentSold">-</td><td id="agentStale">-</td></tr><tr><td>A. Wanjiru</td><td>2</td><td>1</td><td>1</td></tr></table></div><div class="actions"><button onclick="exportStale()">Export stale listings (CSV)</button><button class="secondary" onclick="exportAll()">Export all listings (CSV)</button></div></main>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Reports | PropertyTrack</title><style>
+*{box-sizing:border-box;margin:0;padding:0}:root{--navy:#203d68;--blue:#35658e;--light:#f4f6fa;--border:#dfe4eb;--muted:#697586}body{font-family:Arial,sans-serif;background:var(--light);color:#273444;font-size:14px}a{text-decoration:none;color:inherit}.topbar{background:var(--navy);color:white;display:flex;align-items:center;gap:16px;padding:12px 18px;flex-wrap:wrap}.brand{font-weight:bold;font-size:17px;margin-right:auto}.nav{display:flex;gap:8px;flex-wrap:wrap}.nav a{font-size:13px;padding:7px;border-radius:4px}.nav a:hover,.nav a.active{background:#3c5a84}.search{width:140px;padding:7px;border:1px solid #d5dce7;border-radius:5px}.user{font-size:12px}.container{max-width:1200px;margin:24px auto;padding:0 18px}h1{font-size:22px;margin-bottom:18px}button,.button{display:inline-block;border:0;border-radius:5px;background:var(--blue);color:white;padding:9px 13px;cursor:pointer;font-size:12px}.panel{background:white;border:1px solid var(--border);border-radius:7px;padding:16px;margin-bottom:18px}.report-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}.stat{background:#f4f6fa;border:1px solid var(--border);border-radius:7px;padding:16px;text-align:center}.stat strong{display:block;font-size:23px;color:var(--navy)}.bar-row{display:grid;grid-template-columns:100px 1fr 35px;gap:10px;align-items:center;margin:10px 0;font-size:12px}.bar-track{height:14px;background:#edf0f4;border-radius:3px;overflow:hidden}.bar{height:100%;background:#86b66b}.offerbar{background:#e7c45e}.soldbar{background:#df777b}.withdrawnbar{background:#aaa}
+</style></head><body><header class="topbar"><a class="brand" href="dashboard.html">PropertyTrack</a><nav class="nav"><a href="dashboard.html">Dashboard</a><a href="listings.html">Listings</a><a href="activity-log.html">Activity Log</a><a class="active" href="reports.html">Reports</a></nav><input class="search" placeholder="Search..."><span class="user"><span id="topUser">Guest</span> · <a href="login.html">Logout</a></span></header><main class="container"><h1>Reports</h1><p style="color:#697586;margin-bottom:14px">Logged in as <b id="reportUser">Guest</b> - showing real data from your listings.</p><div class="report-stats"><div class="stat"><strong id="totalR">-</strong><span>Total</span></div><div class="stat"><strong id="availR">-</strong><span>Available</span></div><div class="stat"><strong id="soldR">-</strong><span>Sold</span></div></div><div class="panel"><h3>Status Breakdown</h3><div class="bar-row"><span>Available</span><div class="bar-track"><div class="bar" id="barAvail" style="width:0%"></div></div><span id="numAvail">0</span></div><div class="bar-row"><span>Under Offer</span><div class="bar-track"><div class="bar offerbar" id="barOffer" style="width:0%"></div></div><span id="numOffer">0</span></div><div class="bar-row"><span>Sold</span><div class="bar-track"><div class="bar soldbar" id="barSold" style="width:0%"></div></div><span id="numSold">0</span></div><div class="bar-row"><span>Withdrawn</span><div class="bar-track"><div class="bar withdrawnbar" id="barWith" style="width:0%"></div></div><span id="numWith">0</span></div><br><button onclick="exportCSV()">Download CSV Report</button></div></main>
 <script>
-var demo = [
-  {title:'3BR Maisonette', location:'Kilimani', status:'Available', stale:false},
-  {title:'2BR Apartment', location:'Westlands', status:'Under Offer', stale:false},
-  {title:'Commercial Plot', location:'Ruiru', status:'Sold', stale:false},
-  {title:'4BR Bungalow', location:'Karen', status:'Available', stale:true},
-  {title:'1BR Studio', location:'Ngong Rd', status:'Withdrawn', stale:false},
-  {title:'3BR Townhouse', location:'Lavington', status:'Available', stale:true}
-];
-var saved = JSON.parse(localStorage.getItem('properties') || '[]');
-var all = [];
-saved.forEach(function(p){ all.push({title:p.title, location:p.location, status:p.status, stale:false, plot:p.plot, price:p.price}); });
-demo.forEach(function(d){ all.push(d); });
-
-var avail = all.filter(function(x){return x.status==='Available'}).length;
-var offer = all.filter(function(x){return x.status==='Under Offer'}).length;
-var sold = all.filter(function(x){return x.status==='Sold'}).length;
-var withdrawn = all.filter(function(x){return x.status==='Withdrawn'}).length;
-var stale = all.filter(function(x){return x.stale}).length;
-var total = all.length;
-var max = Math.max(avail, offer, sold, withdrawn, 1);
-
-document.getElementById('soldMonth').textContent = sold;
-document.getElementById('staleTop').textContent = stale;
-document.getElementById('totalTop').textContent = total;
-document.getElementById('countAvail').textContent = avail;
-document.getElementById('countOffer').textContent = offer;
-document.getElementById('countSold').textContent = sold;
-document.getElementById('countWith').textContent = withdrawn;
-document.getElementById('barAvail').style.width = (avail/max*100) + '%';
-document.getElementById('barOffer').style.width = (offer/max*100) + '%';
-document.getElementById('barSold').style.width = (sold/max*100) + '%';
-document.getElementById('barWith').style.width = (withdrawn/max*100) + '%';
-document.getElementById('reportNote').textContent = 'Showing ' + total + ' listings total (' + saved.length + ' added by you). Add a property and refresh to see bars move.';
-document.getElementById('agentActive').textContent = avail;
-document.getElementById('agentSold').textContent = sold;
-document.getElementById('agentStale').textContent = stale;
-
-function downloadCSV(filename, rows){
-  var csv = rows.map(function(r){ return r.join(','); }).join('\n');
-  var blob = new Blob([csv], {type:'text/csv'});
-  var a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = filename;
-  a.click();
-}
-function exportStale(){
-  var rows = [['Title','Location','Status','Stale']];
-  all.filter(function(x){return x.stale}).forEach(function(x){ rows.push([x.title, x.location, x.status, 'Yes']); });
-  if(rows.length===1) rows.push(['No stale listings','','','']);
-  downloadCSV('stale-listings.csv', rows);
-  alert('Stale listings exported!');
-}
-function exportAll(){
-  var rows = [['Title','Location','Status','Price']];
-  all.forEach(function(x){ rows.push([x.title, x.location, x.status, x.price || '']); });
-  downloadCSV('all-listings.csv', rows);
-  alert('All listings exported!');
-}
-</script>
-</body></html>
+var user = localStorage.getItem('loggedInUser') || 'Guest';
+document.getElementById('topUser').textContent = user; document.getElementById('reportUser').textContent = user;
+var demo=[{status:'Available'},{status:'Under Offer'},{status:'Sold'},{status:'Available'},{status:'Withdrawn'}];var saved=JSON.parse(localStorage.getItem('properties')||'[]');var all=demo.concat(saved);var total=all.length;var avail=all.filter(function(x){return x.status==='Available'}).length;var offer=all.filter(function(x){return x.status==='Under Offer'}).length;var sold=all.filter(function(x){return x.status==='Sold'}).length;var withd=all.filter(function(x){return x.status==='Withdrawn'}).length;
+document.getElementById('totalR').textContent=total;document.getElementById('availR').textContent=avail;document.getElementById('soldR').textContent=sold;document.getElementById('numAvail').textContent=avail;document.getElementById('numOffer').textContent=offer;document.getElementById('numSold').textContent=sold;document.getElementById('numWith').textContent=withd;document.getElementById('barAvail').style.width=(avail/total*100)+'%';document.getElementById('barOffer').style.width=(offer/total*100)+'%';document.getElementById('barSold').style.width=(sold/total*100)+'%';document.getElementById('barWith').style.width=(withd/total*100)+'%';
+function exportCSV(){var csv='Title,Location,Price,Status,Plot\n';var allProps=JSON.parse(localStorage.getItem('properties')||'[]');allProps.forEach(function(p){csv+=p.title+','+p.location+','+p.price+','+p.status+','+p.plot+'\n'});var blob=new Blob([csv],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='PropertyTrack-Report.csv';a.click();}
+</script></body></html>
