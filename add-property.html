@@ -16,5 +16,33 @@ button,.button{display:inline-block;border:0;border-radius:5px;background:var(--
 .report-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}.bar-row{display:grid;grid-template-columns:100px 1fr 35px;gap:10px;align-items:center;margin:10px 0;font-size:12px}.bar-track{height:14px;background:#edf0f4;border-radius:3px;overflow:hidden}.bar{height:100%;background:#86b66b}.offerbar{background:#e7c45e}.soldbar{background:#df777b}.withdrawnbar{background:#aaa}
 .login-container{width:90%;max-width:380px;margin:10vh auto;background:white;padding:30px 24px;border-radius:8px;box-shadow:0 4px 15px #00000012}.login-container h1{text-align:center;color:#29445f;margin-bottom:8px}.subtitle{text-align:center;color:#7b8490;font-size:13px;margin-bottom:25px}.login-container form{display:flex;flex-direction:column;gap:8px}.login-container input{padding:11px;margin-bottom:10px;border:1px solid var(--border);border-radius:7px;background:#f7f8fc}.login-container button{padding:12px;font-size:15px}
 @media(max-width:900px){.stats{grid-template-columns:repeat(3,1fr)}.form-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.container{padding:0 10px}.stats{grid-template-columns:repeat(2,1fr)}.form-grid,.report-stats{grid-template-columns:1fr}.search{width:100%}}
-
-</style></head><body><header class="topbar"><a class="brand" href="dashboard.html">PropertyTrack</a><nav class="nav"><a class="" href="dashboard.html">Dashboard</a><a class="active" href="listings.html">Listings</a><a class="" href="activity-log.html">Activity Log</a><a class="" href="reports.html">Reports</a></nav><input class="search" placeholder="Search..."><span class="user">J. Kamau · <a href="login.html">Logout</a></span></header><main class="container"><h1>Add New Property</h1><section class="panel"><form onsubmit="event.preventDefault();alert('Demo form submitted. Connect a backend to save records.');"><div class="form-grid"><div class="field"><label>Title</label><input required placeholder="e.g. 4BR Bungalow"></div><div class="field"><label>Property type</label><select><option>House</option><option>Apartment</option><option>Commercial Plot</option><option>Townhouse</option><option>Studio</option></select></div><div class="field"><label>Location</label><input required placeholder="e.g. Karen"></div><div class="field"><label>Address</label><input placeholder="Street, town"></div><div class="field"><label>Plot number</label><input placeholder="e.g. LR 209/1234"></div><div class="field"><label>Price (KES)</label><input type="number" min="0" required placeholder="42000000"></div><div class="field"><label>Bedrooms</label><input type="number" min="0" placeholder="4"></div><div class="field"><label>Owner name</label><input placeholder="Owner full name"></div><div class="field"><label>Owner phone</label><input type="tel" placeholder="07xx xxx xxx"></div><div class="field"><label>Status</label><select><option>Available</option><option>Under Offer</option><option>Sold</option><option>Withdrawn</option></select></div></div><div class="alert">⚠ Check the property reference, plot number and address for possible duplicates before saving.</div><div class="actions"><button>Save listing</button><a class="button secondary" href="listings.html">Cancel</a></div></form></section></main></body></html>
+</style></head><body><header class="topbar"><a class="brand" href="dashboard.html">PropertyTrack</a><nav class="nav"><a class="" href="dashboard.html">Dashboard</a><a class="active" href="listings.html">Listings</a><a class="" href="activity-log.html">Activity Log</a><a class="" href="reports.html">Reports</a></nav><input class="search" placeholder="Search..."><span class="user">J. Kamau · <a href="login.html">Logout</a></span></header><main class="container"><h1>Add New Property</h1><section class="panel"><form id="addForm"><div class="form-grid"><div class="field"><label>Title</label><input id="title" required placeholder="e.g. 4BR Bungalow"></div><div class="field"><label>Property type</label><select id="type"><option>House</option><option>Apartment</option><option>Commercial Plot</option><option>Townhouse</option><option>Studio</option></select></div><div class="field"><label>Location</label><input id="location" required placeholder="e.g. Karen"></div><div class="field"><label>Address</label><input id="address" placeholder="Street, town"></div><div class="field"><label>Plot number</label><input id="plot" placeholder="e.g. LR 209/1234"></div><div class="field"><label>Price (KES)</label><input id="price" type="number" min="0" required placeholder="42000000"></div><div class="field"><label>Bedrooms</label><input id="bedrooms" type="number" min="0" placeholder="4"></div><div class="field"><label>Owner name</label><input id="owner" placeholder="Owner full name"></div><div class="field"><label>Owner phone</label><input id="phone" type="tel" placeholder="07xx xxx xxx"></div><div class="field"><label>Status</label><select id="status"><option>Available</option><option>Under Offer</option><option>Sold</option><option>Withdrawn</option></select></div></div><div class="alert">⚠ Check the property reference, plot number and address for possible duplicates before saving.</div><div class="actions"><button>Save listing</button><a class="button secondary" href="listings.html">Cancel</a></div><p id="msg" style="margin-top:12px;font-size:13px;color:green"></p></form></section></main>
+<script>
+document.getElementById('addForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var prop = {
+    title: document.getElementById('title').value.trim(),
+    type: document.getElementById('type').value,
+    location: document.getElementById('location').value.trim(),
+    address: document.getElementById('address').value.trim(),
+    plot: document.getElementById('plot').value.trim(),
+    price: document.getElementById('price').value,
+    bedrooms: document.getElementById('bedrooms').value,
+    owner: document.getElementById('owner').value.trim(),
+    phone: document.getElementById('phone').value.trim(),
+    status: document.getElementById('status').value,
+    created: new Date().toLocaleString()
+  };
+  var list = JSON.parse(localStorage.getItem('properties') || '[]');
+  if(prop.plot && list.some(function(p){ return p.plot && p.plot.toLowerCase() === prop.plot.toLowerCase(); })){
+    alert('Duplicate! Plot number ' + prop.plot + ' already exists.');
+    return;
+  }
+  list.push(prop);
+  localStorage.setItem('properties', JSON.stringify(list));
+  document.getElementById('msg').textContent = 'Property saved successfully! Total saved: ' + list.length + ' - Go to Listings to see it.';
+  alert('Property saved successfully!');
+  this.reset();
+});
+</script>
+</body></html>
