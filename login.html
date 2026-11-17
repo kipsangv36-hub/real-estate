@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html><head><title>Login | PropertyTrack</title>
-<style>body{font-family:Arial;background:#f4f6fa}.login-container{width:90%;max-width:380px;margin:10vh auto;background:white;padding:30px 24px;border-radius:8px}input{width:100%;padding:11px;margin-bottom:10px;border:1px solid #dfe4eb;border-radius:7px}button{width:100%;padding:12px;background:#35658e;color:white;border:0;border-radius:7px}</style>
-</head><body>
-<div class="login-container">
-<h1 style="text-align:center;color:#29445f">PropertyTrack</h1>
-<p style="text-align:center;color:#7b8490">Login to continue</p>
-<form method="POST">
-<input name="username" type="text" placeholder="Username" required>
-<input name="password" type="password" placeholder="Password" required>
-<button>Login</button>
-</form>
-</div></body></html>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Login | PropertyTrack</title><style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,sans-serif;background:#f4f6fa}.login-container{width:90%;max-width:380px;margin:10vh auto;background:white;padding:30px 24px;border-radius:8px;box-shadow:0 4px 15px #00000012}.login-container h1{text-align:center;color:#29445f;margin-bottom:8px}.subtitle{text-align:center;color:#7b8490;font-size:13px;margin-bottom:25px}.login-container form{display:flex;flex-direction:column;gap:8px}.login-container label{font-size:12px;color:#697586}.login-container input{padding:11px;margin-bottom:10px;border:1px solid #dfe4eb;border-radius:7px;background:#f7f8fc}.login-container button{padding:12px;font-size:15px;border:0;border-radius:5px;background:#35658e;color:white;cursor:pointer}.demo{background:#eef2f7;padding:12px;border-radius:5px;text-align:center;font-size:12px;color:#697586;margin-top:14px}
+</style></head><body><div class="login-container"><h1>PropertyTrack</h1><p class="subtitle">Real Estate Listing Management</p><form id="loginForm"><label>Username</label><input id="username" required placeholder="e.g. Viki"><label>Password</label><input id="password" type="password" required placeholder="Password"><button type="submit">Login</button></form><div class="demo"><b>Anyone can login</b><br>Use any username and any password.<br>Example: victor / 1234</div></div>
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var name = document.getElementById('username').value.trim();
+  if(!name) return;
+  localStorage.setItem('loggedInUser', name);
+  localStorage.setItem('loginTime', new Date().toLocaleString());
+  window.location.href = 'dashboard.html';
+});
+</script></body></html>
